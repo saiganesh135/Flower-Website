@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Florist</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .hero-header {
+            background-color: white;
+            height: 140px;
+            position: relative;
+        }
+        .hero-header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: white;
+        }
+        .navbar {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 30px 80px;
+        }
+
+
+
+        .logo {
+            height: 60px;
+        }
+
+
+
+        .nav-center a {
+            margin: 0 25px;
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-center a:hover,
+        .nav-center .active {
+            opacity: 0.8;
+        }
+
+
+
+        .nav-center a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0%;
+            height: 2px;
+            background: #fff;
+            transition: 0.3s ease;
+        }
+
+        .nav-center a:hover::after,
+        .nav-center .active::after {
+            width: 100%;
+        }
+
+
+
+        .nav-right a {
+            margin-left: 20px;
+            color: black;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .nav-right a:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-center a {
+                margin: 0 10px;
+            }
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url("https://images.pexels.com/photos/1083822/pexels-photo-1083822.jpeg?cs=srgb&dl=pexels-fotios-photos-1083822.jpg&fm=jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 90vh;
+        }
+
+
+        @media (max-width: 768px) {
+            .hero {
+                background-attachment: scroll;
+            }
+        }
+
+        .hero-text {
+            font-family: 'Amatic SC', cursive;
+            font-weight: 700;
+            font-size: 60px;
+            letter-spacing: 3px;
+            color: white;
+            text-align: center;
+            margin-bottom: 0.25rem;
+        }
+
+
+        .btn-transparent {
+            background-color: transparent;
+            border: 3px solid rgba(255, 255, 255, 0.85);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.15s ease, color 0.15s ease;
+            margin-top: 40px;
+        }
+
+        .btn-transparent:hover,
+        .btn-transparent:focus {
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.12);
+        }
+
+
+
+        .navbar-nav .nav-item {
+            margin: 0 0.6rem;
+        }
+
+        @media (max-width: 991px) {
+            .navbar-nav .nav-item {
+                margin: 0.35rem 0;
+            }
+        }
+
+
+        .social-icons {
+            gap: 0.6rem;
+        }
+
+        .card-img-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .card-img-container img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.25);
+            gap: 0.6rem;
+            padding: 1rem;
+        }
+
+        .card-overlay .hero-texted {
+            color: #fff;
+            font-size: 4rem;
+            margin: 0;
+            letter-spacing: 1px;
+
+        }
+
+        .card-img-container:hover .card-overlay {
+            background: rgba(0, 0, 0, 0.36);
+        }
+
+        .hero-texted {
+            font-family: 'Amatic SC', cursive;
+            font-weight: 700;
+            font-size: 90px;
+            letter-spacing: 3px;
+            color: black;
+            text-align: center;
+            margin-bottom: 0.25rem;
+        }
+
+        .shape {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 2rem 1rem;
+        }
+
+        .shape .card {
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .shape .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-texting {
+            font-family: 'Amatic SC', cursive;
+            font-weight: 700;
+            font-size: 90px;
+            letter-spacing: 3px;
+            color: black;
+            margin-bottom: 0.25rem;
+        }
+
+
+        .about {
+            padding: 120px 120px;
+            background: white;
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 100px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 30px;
+            color: black;
+            margin-bottom: 24px;
+            max-width: 520px;
+        }
+
+        .about-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-image img {
+            width: 520px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(255, 0, 200, 0.25);
+        }
+
+        @media (max-width: 992px) {
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-text p {
+                max-width: 100%;
+            }
+
+            .about-image img {
+                width: 100%;
+                max-width: 450px;
+            }
+        }
+
+
+
+        .services {
+            padding: 140px 20px;
+            background: white;
+
+            text-align: center;
+        }
+
+        .services-container {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .services p {
+            font-size: 18px;
+            line-height: 32px;
+            color: black;
+            margin-bottom: 20px;
+        }
+
+
+
+        .offer {
+            padding: 120px 120px;
+            background: white;
+        }
+
+        .offer-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 80px;
+        }
+
+        .offer-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .offer-item p {
+            font-size: 18px;
+            line-height: 30px;
+            color: black;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .offer-item img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0, 255, 178, 0.15);
+        }
+
+        @media (max-width: 992px) {
+            .offer-container {
+                flex-direction: column;
+                gap: 60px;
+            }
+        }
+
+
+
+        .location {
+            padding: 120px 120px;
+            background: white;
+        }
+
+
+
+        .location-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 60px;
+        }
+
+        .location-info {
+            display: flex;
+            gap: 60px;
+        }
+
+        .location-info h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #00FFB2;
+        }
+
+        .location-info p {
+            font-size: 16px;
+            color: #A1A1AA;
+            line-height: 26px;
+        }
+
+
+
+        .location-bottom {
+            display: flex;
+            gap: 60px;
+        }
+
+        .location-image,
+        .location-map {
+            flex: 1;
+        }
+
+        .location-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(255, 0, 200, 0.2);
+        }
+
+        .location-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 350px;
+            border-radius: 20px;
+            border: none;
+        }
+
+        @media (max-width: 992px) {
+
+            .location-top {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .location-info {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .location-bottom {
+                flex-direction: column;
+            }
+        }
+
+
+
+        .contact {
+            background: #F4F4F4;
+            padding: 120px 20px;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 48px;
+            margin-bottom: 60px;
+            font-weight: 600;
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: auto;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #aaa;
+            border-radius: 12px;
+            font-size: 15px;
+            background: #fff;
+            transition: 0.3s ease;
+        }
+
+        .form-group textarea {
+            min-height: 140px;
+            resize: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #000;
+        }
+
+
+
+        .submit-btn {
+            display: block;
+            margin: 40px auto 0;
+            padding: 14px 40px;
+            border: 1px solid #000;
+            background: transparent;
+            border-radius: 30px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #000;
+            color: #fff;
+        }
+
+
+
+        .top-bar {
+            background: #F4F4F4;
+            padding: 30px 60px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+
+        .top-left a {
+            margin-right: 15px;
+            font-size: 18px;
+            color: #000;
+            transition: 0.3s ease;
+        }
+
+        .top-left a:hover {
+            opacity: 0.6;
+        }
+
+
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            display: block;
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
+
+
+
+        .top-right a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #000;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        .top-right a:hover {
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .top-right a {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="hero-header">
+
+        <div class="navbar">
+
+            <div class="nav-left">
+                <h1 class="logo">Sai <span>Florist</span></h1>
+            </div>
+
+            <nav class="nav-center">
+                <a href="#Home" class="active">Home</a>
+                <a href="#Shop">Shop</a>
+                <a href="#About">About</a>
+                <a href="#Contact">Contact</a>
+            </nav>
+
+            <div class="nav-right">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fas fa-shopping-bag"></i></a>
+            </div>
+
+        </div>
+
+    </header>
+    <section id="Home" class="hero d-flex flex-column justify-content-center align-items-center">
+        <h1 class="hero-text">THE ART OF SAYING IT<br>WITH FLOWERS</h1>
+        <h3 class="text-white fw-bold mt-4">Flower arrangements delivered to your doorstep</h3>
+        <button id="home" class="btn-transparent">CHOOSE YOURS</button>
+    </section>
+    <section id="Shop">
+        <h3 class="hero-texted mt-3">Explore my creations</h3>
+        <div class="shape">
+            <div class="card" style="width: 22rem;">
+                <div class="card-img-container">
+                    <img src="https://img.freepik.com/free-photo/happy-birthday-card-with-flowers-arrangement_23-2149077357.jpg?semt=ais_user_personalization&w=740&q=80"
+                        alt="Birthday flowers">
+                    <div class="card-overlay">
+                        <h3 class="hero-texted">BIRTHDAY FLOWERS</h3>
+                        <button class="btn-transparent">SEE ALL</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="width: 22rem;">
+                <div class="card-img-container">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnpxT-FWl0qjYVbFyhH7jDG4nZJj6XW19a5w&s"
+                        alt="Roses flowers">
+                    <div class="card-overlay">
+                        <h3 class="hero-texted">ROSES</h3>
+                        <button class="btn-transparent">SEE ALL</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="width: 22rem;">
+                <div class="card-img-container">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMWFhUXGBcYFxYWGBUYFxUWFhcYGBcVFRcYHSggGBolHRcVITEhJSkrLi4uFyAzODMsNygtLisBCgoKDg0OGxAQGi0lHyUuLy0tLS0tLy0tLTAtLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIARMAtwMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAFAAMEBgcCAQj/xABCEAACAQIEAwYCCAQEBgIDAAABAhEAAwQSITEFQVEGEyIyYXGBkQcjQlKhscHRFDNickOC4fAVU2OSsvGiwhYkk//EABoBAAMBAQEBAAAAAAAAAAAAAAIDBAEFAAb/xAAtEQACAgEEAQMEAQQDAQAAAAAAAQIRAwQSITFBIlFxEzJhgUIUobHBIzPwBf/aAAwDAQACEQMRAD8AdGHFSUw6dBUMXa672uS4tnQUkEUtIOQp5cSi8hQZ7pphrhpbxhbiw/8AGgNhQzi2LN0a1CQ08RpWKNM8+ilth/8A9j/MPzo72n7Pi8gYeaKFX1+v/wAw/Or+9sG2PanayTi4tE+j7kjEL+Ca2xDaa16l73q3dr+GqQWXzelUtcM/Q0/FNZY2Nm1iZJ7/ANK9FwnYiuE4fcPKn14W9H9MF6mPuN+LrXjKakrwo82pxeFDmTRfTFvVxBrmKbzUaXhqCuv4NPu0SgA9UvYE4IEt8P1qebBipAsgbCkUo4qiXJk3uwdewrFtq4/hW6USIrkqehodiGf1EqB38IetTsa5uhFOmQR76D9q67s9K5Ns+leeONpsz6+TqyN/AivKfYR9oClRcA7pGn5a5K1IK14VqVosTIzLXIt1JKUgtLaDTGkt0+V0r1RXGJuDQdaWo2wnLgrGKtTcY+te3sfeIjOY+FS7lmbkbSwFEcPg7BuG2RJAnnVOWcI/crOfCMm3Toqrgnck+5rnuqt3FOHIgBVRv0oHj7ccqTHWRfCRR/Qzau0CmAG5HzptrqDdhQLi6FWnxR70Je6DtPzq2L3K0Ilg2umW5sdaH2qZbi1oc6qk0poqZ5YolmbjdvkKYfjg5LQcOvSvcy9DWUGscQonF2ZgI3NGWt6VV8NBdYHOrr3Onwry4FZYpPgBC8zXBbX4mpvGMG9q3M61Et3nS+IHhLKC0GFkxJNbs+CwX8GFa2h8OrEAkmNWLVJOclLvj/JbCENi4ts+bHx1w/aqauFu3SAhnwyZMdPxpri62VvXBbEoGaPaeVEH4u64cYdUMEyrLIYExoCN5OnxIp03Kk4Lv3Mxxim1Lr8AK/IME0qcxmHe22V1KsNwwg60qdF2hbXJuMUstORXuWp2EhnLSy07lr0LQNBJjWWoB1uCiN/QVFwtvxChiuT03wDLyw89GBp3hzzfZvQU/i7OrVG4IhDSaLLG03+CSLppfksbIGEGg3FeH6EincbxQ2mEjwnnUm1jEuCVINcxxceS+GRozHjtqJBFVdkrWOP8DS96Gq1e7O4a1/Nc/Ouhp9RGq8npx38lJVa8NXzB4HhxZVGpJgb0F7Z8KSzei2PCRNVxypyqmKljqN2V0Guga8NuuQaYL6JmAP1ie4rSRZ8I9qzXhom6n9wrWFteEewoJCcvLKZxbiKIr2gpzMdT76EgzpppUrCG7dsC2tx2nQLJPwoZ2nT64jLy3q7fRtaCYQ3VhmJOmkiPs+lRZVHHHdXk6GNymkvZGYcV4fcsOUuLlNSMRimVEC6bEHmCIgg1rC8Nt4m6HuopbYA7CueJcKtKSndrp+1TP/6UXVxspjo6bSlVmRcV4hcvvnuGWgDQAaD0HufnSqwdoeDDNKCDzApV0MObG4KuPwTZdNkUn5NTivYpV0K8ydHEV0tKKTULCI97Wu8Fb8Qrg1L4cvir3RgP4iurVD4YKncX2f2qBwbyiin9rJf5jHaUyFHrRLhPYq41g4hbuTQlViZA+8Z0oT2nHl968ftLft2e6DHLG1RKJeuYJHCcZhslzfagfb0fVKR1ptTnvLO8j86n/SFa+oFbCCjOL82Lm+Wl0Ujgd09/ZH9a1YPpIBF9Nfs1X+z6fX2v7xVh+kw/Xp/bV0v+1Axf/GyrXlgb61DrsmugtOXALe7of4aSLqf3CtgQeEewrIeHfzU/uFbHbXwj2FDIVPsoPG3ZcYpC54IOQ7NB8p9KueFw8s11F7vvAMyg6EjmY0n9qiuLS3HZoDKJ13O5+A0qH/8AlaHQNEVxNW55ZbYrrg7ejjGGNNtcliyFdBXF3DE2nvG4JU+U7nbWZ9fwoHgeMG9cW3bJd3MKqiST6VbMV2XxVtReNnNk8TJmQkganQHX4TU0dLPl0ymeWMWvUuSlXVLMWFKnuL8bs5u82DchFe06McrXEWHugu2i511XANdTXYOAj2uGNelqbJrDRRUzh61DFEMGKFnkCeMeW57GoHB/IKn8X8tz2NQOE+QUUvtZJ/I549bkL70Fx+HBjWjnGW0X3oVjjAmpE6ZelcEDcPhQLqmeYov2x4c962ETeheGuHvF9xRftVjHt2wyGDXm3a+THFbyo4bszew5W48aGR70VxVpb3juiTECo6YnEXV+seRyFdYMsWVX0WYJ9KXmnKTu+jq6fFGEOY9lT4thUVpUmKZtKsb1fe3vZTurAvW9V+1HIdfas9wrbiujgyfUx2crUQjHL6emScHl7xIJ8w/Otjt+QewrGMH/ADE/uH51s1o+AewpkiOfZUO1vC7neLiIBtgEevSY6TpQLsx3BxK9+fBJJB2nkD6UY7VcTdLvd5jkZScs6T1iqcrazU8Ize5S/XwWKUdka/ZqqdqMFh+I4e6gGRMyuyjRVdSkiN4mfYVqXEu2ODs2TeN+2yxKhHVmc8goBmTXyyXp5sTIUetMxxeOO2Jk6m7Ya7TYYlVugCNZA5EnYDprSqT2VupcuXFvGRAIG4+XypVC9U8L2ONlU8SyvdE0cNXRaowevXuVXZJR092uBcqO92uRcr1nqCFtqJYY0Jwhk0cwODYsJBA6npQ05Pg86S5JGD4ajI3eKDn5H7vL2qDe7NZB9SdPut+jfv8AOrHlrzJVzxxapkd82UPHcIxFwhVtGQdS0KB8Tv8ACalJ2Ie4B3twL6ICx/7jA/CrjFMXrBYyXYj7uYqB/wBsE/GaUtLBOxv1ntoC2OymCskFzLcu8fU+yrAPyrJO2OOvJi71ktNtXOQFSvgPiXQ67H8K3S1bVdFUL7ACflvWPfTLhcmLt3htdtwf7rZj/wAWFFLDCuj0Mr3WyDgMcpCiRPSpt7ECCI1G9Vngti9cBy5dCAQTDCRIYjoetHeA3WvMLUfWN4f0n4Vy82mUXaO7p9XvVF4+jviF27ba5cVmsoSiEatIHiOX7SgaaSZnQ072h+jvB4ubuHIs3ObWwMhbmLlrSD1iD1qz8JwKWLKWUHhQR7ncsfUkk/GnbtlScwlW++ujex+8PQyK6uPFGEdqOFkzSnNyZ8/8a7MYnBXkF5PCWAW4uttteTcj6GDWkWj4B7CrlfugqUxCqyHd4lY/6iny++3tQviXAsomzqI8szp/SeftWSiLfPJmnFOGHFY4WgwX6tmk9BGgHM6/nVTxOF7t3QkHKxEjbQxpVl7Z8OxGfv1WEXQmQGB1BIWZ6iq7dwlxFVnRlVxKkiAw9KQk913x7fkpg/QlQwtmSANzTnEeHtbgmp/DgoUsRJ5UsZczgSdutbud/gsjpU8W7y+gvwrilkqi27EXCoDnQSV1mRqeZ160qDcIJUM5OmwpVHk0icrX+yrBDJKCbdGnBq6c02K6JqmjmnNqwzmFBJ6D9ego3gOzZMG40ei/v+3zorwxrQtBxCJEn0I3zHma7a/cueWbVvr/AIrj4/yx/wDLX7JFPhiQieRj1mzYsQsANuFALOR1gSY9dqdu41FXO/1Y/rKgwPYka1CbCgKVSVzbkEhiY8xbct6kzWXcYsMl1wMSHHJpNy4oBgoXaYO+3SnP09E7kzX8LikuKHRgynYjY8qdmq92Ux9y7ZDuqqNlCzqo0nX1mjuaiMOyabY1y10Uzevgb160bR7cuVTfpH4GMXhp7xbZtEuGcGCCCCpI1E+Hkdqsd3EigfanC3LuHIQkHzEbB1EgqfT9RQTlSDSfgoOExYIS4NHHlOuhB1VoPiSZInr61ZOyFqwuIbEFQr5coicmZz5ugaJ+ZqmK6BlCt4XPMAEaxMHlIPy9aunDLDr3QYxbujMMpIE7KxDCN8uo08O9TxVO0YpS8su1vHagE6knQ8hE7jSKqn0hcRv22w72brKuZg6qQNTGVjPmEZvSi1gaAMZysdYAOoOugEyDz/SqR2g4JeuXGvm+CWu3Ushngh9VKhdQoKgxEHwrO80+3RjRY+yXbU4m+2HZQSASHXMAQpAOZTtuOdWoE25NuMu7Wz5T1KfcP4HprNVzsFhLluxbtXFysCRqVMiZGo5axFHe1uJ7mypyGXZU8EkkMfENNjAIB6kV5ypcnulYJ4vdtXri+ALIzBnkKzaQrAgSwmdJ2oPdtgMEcFpdUghigESQCAQDEiee1EsIl+8Qz2u7KAESCFzD7WVp5DaBufepAwzXFYXCVcnNnBOZWMwUPlMfD8ahW58hcyMuvjJmtgCbbMp/ykj9KZuYDMN9TRbjfZ65YzSwJaWzT5tdW9JNRcDgnCqZFNtJHahmg4JSIXc92pRq9qdjODM0MX31/wB/OlWfUSA/qXHiK4Lqa6FIiva8RBHguIGbu22JDLOwuDb57e8VYrL1SDVn4djM6huezf3dfjv86fhn4E5o+QsxGgPOf9/jWadtsFZTEhhPiWWAIAUxC6cjz16VoLXvGo/pb8xQ3jfCVdWdbSPejw59pG006QirBPY7iISytvK8SSDEKoJncnxaydOtWP8AjgZGbWNANSfYc6yvB9oWS+wvQWX6tUVpRWnxEsukADkOtaT/AAwyIwjMuuYCQQw9JOU6fL0pGTJtiHGJ1cxNwmEXMdmM5Y01mdvhXrC9BLAAQIlpE6zlnX0/2aj4jHKsF3VRO5MT6f1V5jMU4m551jkOWnl15zPwqVJy5/uV4473tSQH7UceawQ1kBmEZl1gjK2xG7Zo0HQ7TRDgHGWxFvvGGQksMsklY67b/tUTiFlGwyWpMtl1jUa6sfmT8TXuEw6WbYyt9XlaWYmSNxA6sSYHtT0vTSGY8Mt/q6/2BeN4a3dud3h7KhkJL3CRAB1IGu23LnRbgnAmt21N64SWOYZBIVQsBfEZ+Q51XeGXD3rOHGVyAUPTKVufAaH/ADCrTh8LiLiLN0AxqYLMD0AkaR+tC5NcIQscZSbfBD7W4W7cw5ay5WGE7h3TmqgazMaDUxHOm+yfBrjW0N2wbiGHt3bhEiNVhG8Q11GpPiohcw2VTneW0IIGUrDDWASZ8xp7jHGLljDm7aALFlTxghVBOrNMQOU+tZDJbpg5IbeUxdrMe1q0VWcxykH7J12nkdN+UU9hMG74ezisRfcZCLi2yR3agmEzEjMxII1Jk5o51Tu1nE7+IVHe2FtrCkoyEO50YrqMwEEaD/UzwPti4thb9sMlvu8hEhrpE5XCRyCgztrPMUzsm3OUi48XxDraNwDP4SXgCYjltqNelCsJjWKq3cEAlR4nUEZiBsJ67UN4l2ofFolvDqUa64RvCTCyYfMRGUiJkA686I2cIbaBJkh0kDmQwdoj+1q1NR+4NNkrjvBkxNp7UgOolTzSZAJH3TlI+HpWb4jBXEJtnR10I6H9qv1zjClkuLo/ihTvcUHxW/jpB2DZfUUG7fYMPaGMsGSqjNH2rZ2b3WfkT0oJpSVoow5PDKdxbGu7LbjyjWDXlMcLw3eAuZBPPr7UqJYHXDOnHSxkrZenGtcsaeuJTbCls5yCHBeFi/PjykcokkdRViwvAktgxJneT09BVS4fi2tOrruOXUcxVuuYe3e8bTcVtVDElB/Tk8sg9RTcST+RWRtDL4+ypKqc7DdbQzQejEaL/mIoXxa9duIyfyVYEEzmugHeI8Kn1lqNPbAEAQByGgHwoTxPymntCbMu4jwW3YcrbOYaMsgFhpGvXUGi3CuNtYs5GuhV3TUll/tkmBy0GmtC8fhnuXye8KDRSQQTAJ5H3396K9muHraxSvcu94pVgneKpK3fDl8Xtmj4UuaXkGCuVJhfhUXrq5AbgKkXM2bKBvKtAhpj3k0SvL3Sd2JyQQQ++8iDzjlH6VYcOFYMEUKuY7QMzc203PqelAe2V+/YXvrIDQhVlbbMPIxiOem/Oky+38HUxQ+irfLAlgsBbHdlpVWYanJmnzD0GhX86K8UxNnIDfUZQQw7yR4teR/LnTfHOLrhksPfMZhDMqtkLZAxByCddYInYiqtiO2lq9acQS/iHdxcIYGfHpoojXU6TWwxOI3JljX5I2GufxN1j3BS3mzqREFwy5hOykgmB/rVzbvLQzKSQBop6enSs74ViRbuJdznIwbQAbgECTMAyKtWI4j3lpLltdWAgSZLTBAUEwd+tBkkcmMrldh6x2hsMGklWA2bc9deQ9qidsyLnDrmQr4jbyxqBF1NT021mq1gLjXGBFslrhbIApM5TqB6CrEnZR8n12IhCVbIizJHiIIJggco58qxwjBqTN+rJ8FEs4S7dZRbRny58gzD7yswE8ySNJE6wKnNwLGti3tCywvsodgCmRbZ8pZgSFXw5Y9KuPYdLuFf+HvWwEu5rovA5kLlT9XsADCEx+FXO7ZKBnteK5lykEmGAJIUnludfWn35QKXBl+J7PY/CE3vDlA8RVgTcAcDKBGhgyOgFXDivc3sN3oIfwoVViC5bODJ9Ad/QmrNxRG7tgttXJnOGfKsQecE9OXxqrW+yl1Dbi6kKBNoyACR7H01PvSpqzH7EfDXbd5zEW0EZ8sk5lEwDsoIjT96J8KsjLeR/wCUZaW08NzNnB+Rb/PUfhXDypZfKS2tsRl0OmYxqBoSefxFVntd2tPfrhsOC1pG+ucfbf7s9Ad/UAcqPFjaGYYOUkgLaxvdIbYtlirEKTpmWdG16j86VeXsfnuQyafer2qj6NVFUy73Fpi4KkPUa4ahZw0NA0e7P4/Ke7Y+Fj4T91v2NAVGtSAKxSadmtXwXS7/AO6GY+zIpzg2P71cjfzFH/eo/wDsKk3rcirYyUlaJZR2ujK+O8HcvKL5ybak6DORyMiGA1HtTEXr5FqzYQLbtwczSbjqFDsXYjMczqQAN2FGe1guW3UiZDDLlJzF2IAyj7x0EjXUVeeyHBUw1kMyBbzCbpBzGR9lTyG2n50uT5MjC2edmuDvYsIL7E3Muo3yzrln7ZXYE8qG9ucYqYdgzKJUjUwWBBHh6n9qs1xmY+E7RB69Z9KoH0hdn7102u6cE5wjKRC+Jz3baSRGaD6UiTtV4Og96j7uujLe0fG72KYZtLa+S2Cci8pgnc/rW1fR3we1YwVoKIe4q3Lu5JdgNwdo0EDSlwnsfhMLato1q1euKS/e3FUFnnlMkAaADXlRc49cxQAZtCoGkyTmWYjSCaY8iugIYZv1MHYrsjYcMqKFYxLKs+EXO8dRPNtF/tMUCwPY3JiEdbuqMrKpVjImSGRTAB11JirsALQbvMwMFlKmY6ggHpFC793EAILWSHRzbZiZA213JPiBA2rJICUYt2GreFtlgwtqLihgGiCFdgWAMc4BNA8fdtyqyvem4VyHUHfRtNNCPiYpXMfjTaQWcMukL3rOpBYKSSLanYkATOkmRpXvDVuW8ve23ZnBZ9AGFxpLKSDBUEnn8aXNWTOJKXBstjLIkSeXhJnyzrzp/C41EsqGUIFQyB5VAkSes6n41zxZitsgEQPPOsgnr1oVg8KbniUlROvhOn9s7mtja9KKYRi8fLIPZnjF5SBdzXrV3NctkxC2yJUJmAbbKMhGnpRq/wAZfvSlq2wOZSQ8bsv9J1bYRMDeg2JvpabuMKC1wM2a4xNzuixllSZAYnkNBRHA4bukyzLndjqRO+p3PU02UVCO6bJ4x3OkV3tz2iNlHsWSDiLgm666d2pEBU6GNug13Iql8Hud1ZK5QWOtH+13ZNwWvWjKkEtJObqTNU18X9XA821bDLCS9JZByxSWxE/ieNW5ZzZcpBjSvKr9nENBtmYJmPWlRb2hk87nTNouVGuVKcVHcVMydDKb1IppBVg7OcJF4ln8q8uprFFydI85VyQ+C4Qu4aSqqZzevQVartmRmX4j9aevcPULCCB0Fc4NiBH56GqscNgictwHv4cd4lyJysCQfz9xv8KJXX0JkZCN5ED1mueIKZkCgPEMBZxAKuNSCvzBB02Jg1sobuT0Z7WHMCyBRlYEEAggypnmDz+FDuO3woMByfs5AWMzpEbGY9Kq/DcNd4fcbO118MywIlxbfQKzqTOUCdFj2qtWe1eIfEh1LtdE5LdlGNq6AzDLcViT4vB4vs5tdRSZY3VFEc/Nvs1K3gDdHeOwVlUAKwH2oJBj1kT86fe2bki4AukqNWy3OTA8tzy2pzBOzpLKVBGoMeGQNAw3jX9Kj2MbmcqdY0zAz7A81MEaGhajFqxzc5fr+wM/4sj3FtKy3LmYo9pREQNSR0kR8ZonwnHnFBmWzkFsm0QHU5XGly34dNIG3WNDNN43A2z5iVkFO8AhlQ/1naNSCdqCWuI2cHct2rJDpimLJekFXKhQASuhJEnNpseoplPyT5WWzMtsgRGhMnYaideRM1VeJfSPgrVy5YPeNcVgjZbZMt5SEnfKeXMHSalcVbF9+bOG8XlW7mLC0ikE5kcqZaIEKQdR71PwHZyxau98wz34IznVlUknKsnwjU61sVz0IaOMG93FIj3LbWQYYo2jmPLnA0Uc41O21COOcaZmOGwh18ty6uy9Ut/1dW5e+zvH+NPduNhcP4Qul64NMvVFbr1PLYSdnLfZ97OEuXLSgFUJWRq0anTkPQ76TTUlBWwXLdwhjh+CTD2wef3vzj96jXrrC6mRsytM68xTHDMb/wAQw5GVlKmCepG5FNdrbS4e1buICMhg5ehESa5Golkyz+PB0cCxwh+WT+NXXe09pDHhMn4VlmGwb27JcpMEiaKcO7UFGZWuTn0k/ZHWjmKvW/4YKDmGT50em+pDJsfTKduP74u6M6VwbkGTO0b7Uqk4+wiMp1j96VWzg2xEcyjakjYHFR3FTLoqM4pTJkMAa1eOylubA1jxGapca1cuyRPckcsxj1o8P3AZeg02g3qFccHzCD15GpNy2Dz/ABpi7ZGwJPpVLEIj3GA0NCOJYHMCQdRz6jl+3wow+DAjMZNCeM4e8yTh7oRwZhlzIwG6sOh6jUVint7NcL6O+FsXskXN1bLP3gRofflVd4ndGHuq8DKFKQqiQrHMSI1nNBoywLLq5TmcuWJjfxA1CudnbVzV7t5vjb/avJxl0E4zg+Sw4LEBkAjLAGnOa6RAGJXc7wOu/wCNMYHCW7YAUMYES7SSPXqfWp6uesewj8az6djZZ14I1/D3DEMqDUHMMxIPQTvQ/D9mcMr27rW+9u20CC5c00E6hB4QTJ2UUZj/AHz+dImjUEIlkbPDPsOg0H714EJ0UD06T6+lRcZxC3bKKzeJzCL9piNTA6Dmdvwonhtq82kCk2QuA9nbVhdfG5JZmOgLkyWjrJPtR65bDAqdiIqOj04LlLfIa4Mpt2rnCsQ1m6B3F12Nm4NtTPdt0b86d7SYkNacESCNvStG45wq3i7LWLq5lYfFTyZTyIPOsUfvk7zDX80ozIl3lcUGAfeKSsK3WN3Nx4RC7VdmM4DWFAITMRtIqvJxVltZW0IERV64Pee4mZlIyqU15wN6zPGuC7KVIhm19jT2uUwcUnG+ez20ty+xgEn05UqO9m8dbsBlfZoIYa/A0qJNHSxaXFKNznz+jVblR3qRcphqkZChtBqJ2kVpeGsqqBVEAARWaxWicIvZ7SH+kfMb03B5F5SR3YrwWxO1OmuJ1qgUMXLU0N4vcAItjoWaOkwJ/H5UZFVPEYhf4m9mYZpCgdFCiB+JPxpGV0vkfgjul8DZtAjXahly4Lb+C5lA3XQg+4/aiN1FnUSPw+NM/wAOMoZbSBW2IVRPqOo9ak2u7R0Y5ElTffhnuE4wp0YZeh5H16ii1nEA86gWcLBUaEaaQSYH4CoWFtZllSRBYaH1OtNjqJR4lyDl0WOfMHX+CzK81B4pxIWlnKzHooLZR1YDWK6tW3NslT4xy+91HvQjE4tQu+rT7wN5puXM0vT5JdPpouTc+l2h0u75iDlfk0D4Ag8vSj3Z/Gd/h1uQA2quo2DoSrAekiq7hcdbIzd4D6zO3rVh7MIosBl2dnuD1DsSD8RFT4N252xmo2qC45ClhQ2pGtPFY5CmcLtPWn3NVpELZx3vLasg4/iUS86XTqrHQ7amQa111kVm/b7s8t3FW7h2ZdR1Kn9j+FEuy7QTjHI1LygdwnFI6QpH9o996j47stYuAsUIJ3K6GoOEw1qzenPAGhn0q0W+ILlU5Xg7MBKmtbHa+CUVtRn+G7PYW3iBaLuxIJCew3JpVdsDh0fEvdgeEZAfU6n9KVeo5SkwjcFMMKkOKZepGPQ2N6tfZLEyrW+hkexqqCp3C8b3VxX5bH2NFCVSs9NWi/NTY3rxb6sAwMg7GuhVZOeXGO4E1Tu1PBbT3O/YhBA7wtC+XZs3t+VT+0naC3hUL3Gy9APMT0A51inaztbexrZSStqfJPm9XP6UEobuA4zcHaNm7NWbN60LltS9okhCZhwpjNr9mQY60S4mh8M8yBHQAEn8QtQ/o+04bhBtFpf3ohxIyyfH8Y/Y16aUYUgsFyypv5I6pA+E1W+z90jMpB8x/E1Z7o8J9ooNaAVyFInePwP6VHkjxu9jq4sitwflBrCtuI3/AN/79qov0sYpsMli/ahX7xgZEh8yGVYcwctXdGjWgvbvgqYvDhWYqFOcERuFMDXlrVGKS2tPwc/Uxala8gHs1wXCYlbeJFskOMzW1dxaLfazW5g6zpWj2n8Igeg5CsA7CdqWwd0WH8Vl3gQdbbMYkehO4rcsFjCecii20xDdhS0pApwselNK9d5qMEWY9KoX0uYy5awyXrQ8QuR7BgZP5VfTWdfSvjPDh7H32Yt7AR+Zr1BQbT4MjwnExce2l9jlzy5G+tade4nYSwLVpp0AUDU67VTuy2EsWb/eXCCgJnMJgf8AurPd7UcOF5ctg7/zMoEesb0M3tfI3dKqk7D3CeFZbcEwTr/7pVN77MAVmDrSpqjYpxZFuCo1ypVyot2omNRwtJ65U15cahCCGB4w1tckSOWu1O2uL3WbzEDoKCZ67e6Qv+/0ooyk2lYEklyVjtJba87EkvqY+1HppqKrC4TxEdPc7/iKvWIs5hO/wzR8V8QoYbAMkxBJ0Jkb/wBYE+XkavJjUuxN0NgcPHK2qn0K6EfMVLxL/Wn0AH6/rVc+jdiEvWz5QysNxBIgxJIjTkaM4lfrn15j/wARSMz4RVpF638D+MXMkUBXDQ5y75THrEGPjR+yOVRnsRcB9/yNZCKlDnyblyOOW14GcBjJH50J+kIlsC2sQ6bEjQttp8aJYi1kueh1HxnT5zQ3tVhu9wr9U8Y1YeXcHL6TUuObhOn8F2fGsuO4/KMdxmEPmAMggjR9CNRyrbeBY0XcPavofMozL0YaEEcjNZo9mfx5Xm5+tccO4piMI02Tod1ZTlPrqdD61fKNnITo2/BYwHQ6HpRCazLhHbmzdOS+O6cfanwT/dy+NXnh+NkDWRyYag0tS8BNBYnSss+lK0WyXQPI0fAj960LE40BgnM6x6VW+1+AN6xcRfMRp7imx9wd1MxK7fg+aeo9ahvjiW/Af6V7iGc3GSIYEgzyPOrz9FvA7dy691wGNqMs7BjMtFKkk5chOZf+z+EdMMr3/MQsKfsjp715Rm5qADXlPQG/3Adyol6pVyot6oGUojg03deumqPdNCwhB68vNt0+P5jauFptn1n8dPwYfkabp43KxeV0qFeMa/idfXzpqPjUeysoPUciYk9Ssj7XMV7iz4W5MQQNGRpPqujb0l12IJBA6toRP3XG3rVhOTeAcSNi7nAzKdHChTKlm18J3EdKu9u6Hm4JKtBEiDBGkg7aRWbMdBmjYaMQfssf8VQefWrfwfiee2BsygAjTkBqIJ0251PntKy3R1ua8lkwp335cifyp1rBYgwQBzOn561TeO8dvWGQWnChlYmRzUN/Q3pQDFcfxNwQ+IMHcBkUR3ckGLQ51uF3BCtSqyv/AN4LDiuOd5je6VgbQGVCMurxmJmZPljarDbthlIPMQfjWY8NOW7aIYaPb+0u2T0tzz9K0e7i1tozsYCgk/CkZsfr+UW6XJeLnwzNLtvUrqYJH+M22lRHsbHLHrlA/FjUm5czMWJUkknQ3m312GnOmmT+kjbUIV/+TmrEct1fBV+M4tluOi6ggetTuxHa18G5Ry5sncanIeoHT0r3j2PtBrJRR3qecnUN7nnXvEOPW3wrItpVuOfEQNPnU9tPhHrZqGD4tbxBF21cDkeuvsRVhPjhl6Sa+b+E4y7h7guWnAI+TehFbz2NuX3t572UFgDlXbXlTk6PNAPtH2CtX7xvK7Wy48WWIkc/ep/ZPs2MECA5fMfETA+VWtrUkAfGgHajE3ksv3GXMAd+XsK3gEJDEjMQCDGkilWV9jO0bKjI8nxsS5211j3mlWb0gW0jQLhqFeNSbrVCvNUrLUMsaZuV2Wpq41AwjhjTR1P+ikkfDRh6b0rjfgJ9viNveo+befc6A+05eX9QqzBGoE2V3IczRIB9wpyn/wDm+nypF95C+zq1vqdxK8xTYYtp5h6Fbg3E6N4hXAcL9qNtPHb5LyYFedMAHWQR4Q4Go8DqwiGG0jkv400RlMgsrGRJtwRIVfMonnXN5JE5Z0O9oN9k/atn1pssAR5Rr966h855HT7NePWSMbje8US6yoeCSykhl0B1G0H50y6OZgg6ttcfpkH2+oNeWpKwCx0GzpcGqpybXnXptydVPP8AwU6uevpQpJcIKUnJ2zzDAm4JYAZgdXf7qDbPvrRLivG2cZAYTWfEgLHcczAEHlQ4J/S23/JT/petNOp08Lan/lW1+9zJ0rHFN2w1llGDgvJx/E6efl/zWPIclFNXGHvr9129N30p0uQNzy3uWhyHQUw0ERoT73Ln+lEKKpxe0+d7mWUDRO+tdDCBrcASdxA1n0FTOLOysVn6twJB0Ej8qtHYvs8Hti+bhDAMVgDKNN9d4qbLk2dm7NzW39gDg1nB2cOzX0m6ZgPOnQKP1rT+w3Fku20AOoSY5jlVA4L2afG3O8vtFhCdV/xIO49+tW7gfCGwZdgyd2zSiqTIXoSd6LG1ffJm11ZoNuwIzBjQLtEii1cP9Da/Cp2FxYKzNV3tpxNUw13XXIfxpyMZV+z/AAYXeHWwvmPin1J1rynuw3FEGBUFvLIIG410mlQSjbMcIPss92oV+lSqeRWiK1M3KVKgDRwRo/osj0Otc20BQsdwAQRIIJidqVKrsf2Iln9xxgbYuecAnrAB+1zGtReI3GtsAjMBO2Ykb2+RNKlRfyB/iO8NsrcTM6gmDqBB2H3YpcSHdnwEj/MTzfqaVKs8nvBGwtzOfEFO26r/ANP0qTcwyRORZ9h0uUqVazyPDhUzDwLv0H3rdcYnDIEDBVnw8geZ5HSvaVCaC/4g8go22RB930qVw4d4fGSd+ZA+Qr2lRvoFdgHjiA5wRoBoOmtRl4reWz3K3CLZ0KiBIjad4pUqnmluAb5LrhOLXlwQyvEAAQq7Ae1EsAub6xpLlF1JPPoJgfKlSpOPsqfK/QTe4QogxoKd4dhUcFnUMZ3YTt70qVVIUym/SDcNu8q2/ACmoUAT4vSlSpV5ipdn/9k="
+                        alt="Signature bouquets">
+                    <div class="card-overlay">
+                        <h3 class="hero-texted">SIGNATURE BOUQUETS</h3>
+                        <button class="btn-transparent">SEE ALL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="About" class="about">
+        <div class="about-container">
+
+            <div class="about-text">
+                <h2 class="hero-texted">About Me</h2>
+
+                <p>
+                    Hi, I’m Sai - a florist based in Vizag with a lifelong love for flowers and design.
+                    I draw inspiration from the natural beauty around me — the changing seasons, city gardens,
+                    and everyday moments that deserve to be celebrated.
+                </p>
+
+                <p>
+                    What started as a small creative dream has grown into my own boutique and fresh flower delivery
+                    service right here in Sai.
+                    Every bouquet I make is personal - I handpick each stem and craft every arrangement to tell a story,
+                    capture a feeling, or brighten someone’s day.
+                </p>
+
+                <p>
+                    Whether you’re celebrating, saying thank you, or simply bringing joy to your home,
+                    I pour my heart into every creation to make sure it feels genuine, beautiful, and uniquely yours.
+                </p>
+            </div>
+
+            <div class="about-image">
+                <img src="https://img.freepik.com/premium-photo/flower-warehouse-worker-with-tray-potted-flowering-plants_88135-35708.jpg"
+                    alt="About Image">
+            </div>
+        </div>
+    </section>
+    <div class="services-container">
+        <h2 class="hero-texted">My Services</h2>
+
+        <p>
+            Whether you’d like to visit my flower shop in person or order your bouquet online,
+            this is the perfect place to find the arrangement that speaks to you.
+        </p>
+
+        <p>
+            From classic roses to seasonal garden blooms, I create every piece with care, style,
+            and a personal touch - perfect for any occasion.
+        </p>
+    </div>
+    <section class="offer">
+        <div class="offer-container">
+
+
+            <div class="offer-item">
+                <h3 class="hero-texted">Visit my boutique</h3>
+
+                <p>
+                    Step inside my Vizag floral boutique and explore a world of color, fragrance, and inspiration.
+                    Here, you can see each bouquet up close, choose your favorite flowers, and even request a custom
+                    arrangement on the spot.
+                    I love meeting my clients in person and helping them create something truly special.
+                </p>
+
+                <img src="https://img.freepik.com/premium-photo/flower-shop-with-lot-flowers-floor_670382-20447.jpg"
+                    alt="AI Workspace">
+            </div>
+
+
+            <div class="offer-item">
+                <h3 class="hero-texted">Order online</h3>
+
+                <p>
+                    Shopping for flowers online has never been easier! Browse my collection of fresh, hand-tied
+                    arrangements and seasonal designs - all available for same-day delivery within Vizag. Every order
+                    is prepared with the same love and attention to detail as in-store purchases, and delivery is always
+                    free across Vizag.
+                </p>
+
+                <img src="https://img.freepik.com/premium-photo/flower-shop-with-door-that-says-potted-it_984698-9876.jpg"
+                    alt="Development Workspace">
+            </div>
+
+        </div>
+    </section>
+    <section class="location">
+        <div class="location-top">
+
+            <h2 class="hero-texted">My Office & Workspace</h2>
+
+            <div class="location-info">
+                <div>
+                    <h4>Location</h4>
+                    <p>Hyderabad, India</p>
+                </div>
+
+                <div>
+                    <h4>Working Hours</h4>
+                    <p>Monday – Friday<br>9am – 6pm</p>
+                </div>
+
+                <div>
+                    <h4>Contact</h4>
+                    <p>saiganeshgangalla@email.com<br>+91 73372 49005</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="location-bottom">
+            <div class="location-image">
+                <img src="https://i.pinimg.com/originals/40/53/8d/40538d1a27ce919fe0930646093fade1.jpg" alt="Workspace">
+            </div>
+
+            <div class="location-map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121610.73906557389!2d83.13084861430985!3d17.72881963242479!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a39431389e6973f%3A0x92d9c20395498468!2sVisakhapatnam%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1771685019352!5m2!1sen!2sin"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+    <section id="Contact" class="contact">
+        <h2 class="hero-texted">Get in touch</h2>
+
+        <form class="contact-form">
+
+            <div class="form-group">
+                <label>Name*</label>
+                <input type="text" placeholder="Your name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Last name</label>
+                <input type="text" placeholder="Your last name">
+            </div>
+
+            <div class="form-group">
+                <label>Your email*</label>
+                <input type="email" placeholder="Your email address" required>
+            </div>
+
+            <div class="form-group">
+                <label>Message*</label>
+                <textarea placeholder="Enter your message" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">SUBMIT</button>
+
+        </form>
+    </section>
+    <header class="top-bar">
+
+        <div class="top-left">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+
+        <div class="top-center">
+            <h1 class="logo">Sai <span>Florist</span></h1>
+        </div>
+
+        <div class="top-right">
+            <a href="#">Shop</a>
+            <a href="#">About</a>
+        </div>
+
+    </header>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
