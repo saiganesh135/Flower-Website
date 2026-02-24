@@ -88,18 +88,6 @@
             opacity: 0.7;
         }
 
-        @media (max-width: 768px) {
-
-            .navbar {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .nav-center a {
-                margin: 0 10px;
-            }
-        }
-
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
                 url("https://images.pexels.com/photos/1083822/pexels-photo-1083822.jpeg?cs=srgb&dl=pexels-fotios-photos-1083822.jpg&fm=jpg");
@@ -108,13 +96,6 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             height: 90vh;
-        }
-
-
-        @media (max-width: 768px) {
-            .hero {
-                background-attachment: scroll;
-            }
         }
 
         .hero-text {
@@ -151,13 +132,6 @@
         .navbar-nav .nav-item {
             margin: 0 0.6rem;
         }
-
-        @media (max-width: 991px) {
-            .navbar-nav .nav-item {
-                margin: 0.35rem 0;
-            }
-        }
-
 
         .social-icons {
             gap: 0.6rem;
@@ -275,24 +249,6 @@
             box-shadow: 0 20px 60px rgba(255, 0, 200, 0.25);
         }
 
-        @media (max-width: 992px) {
-            .about-container {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .about-text p {
-                max-width: 100%;
-            }
-
-            .about-image img {
-                width: 100%;
-                max-width: 450px;
-            }
-        }
-
-
-
         .services {
             padding: 140px 20px;
             background: white;
@@ -343,15 +299,6 @@
             border-radius: 20px;
             box-shadow: 0 25px 60px rgba(0, 255, 178, 0.15);
         }
-
-        @media (max-width: 992px) {
-            .offer-container {
-                flex-direction: column;
-                gap: 60px;
-            }
-        }
-
-
 
         .location {
             padding: 120px 120px;
@@ -409,25 +356,6 @@
             border-radius: 20px;
             border: none;
         }
-
-        @media (max-width: 992px) {
-
-            .location-top {
-                flex-direction: column;
-                gap: 40px;
-            }
-
-            .location-info {
-                flex-direction: column;
-                gap: 30px;
-            }
-
-            .location-bottom {
-                flex-direction: column;
-            }
-        }
-
-
 
         .contact {
             background: #F4F4F4;
@@ -553,17 +481,96 @@
             opacity: 0.6;
         }
 
-        @media (max-width: 768px) {
-            .top-bar {
-                flex-direction: column;
-                gap: 20px;
+        @media (max-width: 992px) {
+
+            .hero-texted,
+            .hero-texting {
+                font-size: 60px;
             }
 
-            .top-right a {
-                margin: 0 10px;
+            .hero-text {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 576px) {
+
+            .hero-texted,
+            .hero-texting {
+                font-size: 42px;
+                letter-spacing: 2px;
+            }
+
+            .hero-text {
+                font-size: 32px;
+            }
+        }
+
+        /* Reduce heavy paddings on tablets */
+        @media (max-width: 1200px) {
+
+            .about,
+            .offer,
+            .location {
+                padding: 80px 5%;
+            }
+        }
+
+        /* Mobile spacing */
+        @media (max-width: 768px) {
+
+            .about {
+                padding: 60px 5%;
+            }
+
+            .offer {
+                padding: 60px 5%;
+            }
+
+            .location {
+                padding: 60px 5%;
+            }
+
+            .contact {
+                padding: 60px 5%;
+            }
+
+            .services {
+                padding: 80px 5%;
+            }
+
+            .about-container,
+            .offer-container,
+            .location-top,
+            .location-bottom,
+            .location-info {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .shape .card {
+                width: 100% !important;
+                max-width: 320px;
+            }
+        }
+
+        /* Prevent horizontal scroll issues */
+        @media (max-width: 576px) {
+            .navbar {
+                padding: 20px 5%;
+            }
+
+            .nav-center a {
+                display: inline-block;
+                margin: 6px 8px;
+            }
+
+            .top-bar {
+                padding: 20px 5%;
             }
         }
     </style>
+
 </head>
 
 <body>
